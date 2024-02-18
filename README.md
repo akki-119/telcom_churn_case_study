@@ -54,19 +54,23 @@ Customers usually do not decide to switch to another competitor instantly, but r
 
 In this case, since you are working over a four-month window, the first two months are the ‘good’ phase, the third month is the ‘action’ phase, while the fourth month is the ‘churn’ phase.
 
-Workflow:
+## Workflow:
 
-1. Data Preparation
-  The following data preparation steps are crucial for this problem:
+**1. Data Preparation**
+
+The following data preparation steps are crucial for this problem:
   - Derive new features
+
     This is one of the most important parts of data preparation since good features are often the differentiators between good and bad models. Use your business understanding to derive features you think could be important indicators of churn.
 
   - Filter high-value customers
+
     As mentioned above, you need to predict churn only for the high-value customers. Define high-value customers as follows: Those who have recharged with an amount more than or equal to X, where X is the 70th percentile of the average recharge amount in the first two months (the good phase).
 
 After filtering the high-value customers, we get about 29.9k rows.
 
   - Tag churners and remove attributes of the churn phase
+
     Now tag the churned customers (churn=1, else 0) based on the fourth month as follows: Those who have not made any calls (either incoming or outgoing) AND have not used mobile internet even once in the churn phase. The attributes you need to use to tag churners are:
 
     - total_ic_mou_9
@@ -80,7 +84,8 @@ After filtering the high-value customers, we get about 29.9k rows.
 
 After tagging churners, remove all the attributes corresponding to the churn phase (all attributes having ‘ _9’, etc. in their names).
 
-2. Modelling
+**2. Modelling**
+
 Build models to predict churn. The predictive model that you’re going to build will serve two purposes:
 
   1. It will be used to predict whether a high-value customer will churn or not, in near future (i.e. churn phase). By knowing this, the company can take action steps such as providing special plans, discounts on recharge etc.
